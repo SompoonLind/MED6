@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: 650838371}
   - component: {fileID: 650838373}
   - component: {fileID: 650838374}
-  - component: {fileID: 650838375}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -316,9 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c880560a28ab55f46917ab5dac142a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 650838369}
   rayDistance: 5
-  timer: {fileID: 650838374}
 --- !u!114 &650838374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,19 +329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerActive: 0
---- !u!114 &650838375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650838367}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67dbf5e42182b2042bddbc61c627d13b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deltaTime: 0
 --- !u!1001 &873982868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,15 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c880560a28ab55f46917ab5dac142a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 993795762}
   rayDistance: 5
-  timer: {fileID: 993795758}
---- !u!20 &993795762 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1708915286622062532, guid: 3893d82a357259a4fb6a26cdfd893996,
-    type: 3}
-  m_PrefabInstance: {fileID: 55471746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1354389413
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +581,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8737b021a9ad23243a72c17dc10b6666, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
