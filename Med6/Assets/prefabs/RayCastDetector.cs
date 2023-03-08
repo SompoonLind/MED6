@@ -1,28 +1,34 @@
 using UnityEngine;
-using System.Collections;
 
 public class RayCastDetector : MonoBehaviour {
     private Camera cam;
     public float rayDistance = 5f;
-    private stopwatch timer;
+    private float currentTime;
+
 void Start()
     {
+        currentTime = 0;
+        Cursor.lockState = CursorLockMode.Locked;
         cam = this.GetComponent<Camera>();
-        timer = this.GetComponent<stopwatch>();
     }
  
 void Update()
     {
         RaycastHit hit;
-
-        timer.timerActive = false;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
         if (Physics.Raycast(ray, out hit, rayDistance))
         {
             if (hit.collider.tag == "Finish")
             {
-                timer.timerActive = true;
+                currentTime = currentTime + Time.deltaTime;
+        
+                float rounded = Mathf.Round(currentTime * 1000.0f) / 1000.0f;
+
+                if (Input.GetMouseButton(0))
+                {
+                    Debug.Log("Looked at " + hit.collider.gameObject.name + " for " + rounded + " seconds");
+                }
             }
         }
     }
