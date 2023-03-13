@@ -39,8 +39,12 @@ public class PointVisualizer : MonoBehaviour
                     valuesDeluxe.RemoveAt(0);
                     removeLine = false;
                 }
-                Debug.Log(valuesDeluxe[i]);
+                string finalvalues = string.Join(";", values);
+                valuesDeluxe.Add(finalvalues);
             }
+            valuesDeluxe[0].Split(";");
+            //Debug.Log(valuesDeluxe.Count);
+            Debug.Log(valuesDeluxe[2]);
         }
 /*
         endTime = float.Parse(values[3]);
@@ -57,4 +61,5 @@ public class PointVisualizer : MonoBehaviour
         }
         */
     }
+
 }
