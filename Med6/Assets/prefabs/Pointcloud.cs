@@ -12,6 +12,7 @@ public class Pointcloud : MonoBehaviour
     string filename = "";
     bool headerLine = true;
     RaycastHit hit;
+    private float currentTime;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,9 +48,11 @@ public class Pointcloud : MonoBehaviour
         
         TextWriter tw = new StreamWriter(filename, true);
 
+        currentTime += Time.deltaTime;
+
         if (headerLine == true)
         {
-            tw.WriteLine("X, Y, Z"); //Add to this list if we want to add more predetermined things
+            tw.WriteLine("X, Y, Z, Time"); //Add to this list if we want to add more predetermined things
             tw.Close();
             tw = new StreamWriter(filename, true);
             headerLine = false;
@@ -57,7 +60,7 @@ public class Pointcloud : MonoBehaviour
             
         for (int i = 0; i < 1; i++)
         {
-            tw.WriteLine(Mathf.Round(hit.point.x * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.y * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.z * 1000.0f) / 1000.0f); //Add to this list if we want to add more predetermined things
+            tw.WriteLine(Mathf.Round(hit.point.x * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.y * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.z * 1000.0f) / 1000.0f + ";" + Mathf.Round(currentTime * 100.0f) / 100.0f); //Add to this list if we want to add more predetermined things
         }
    
         tw.Close();
