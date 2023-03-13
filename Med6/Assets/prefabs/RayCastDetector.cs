@@ -3,11 +3,11 @@ using UnityEngine;
 public class RayCastDetector : MonoBehaviour {
     private Camera cam;
     public float rayDistance = 5f;
-    private float currentTime;
+    private objectTimer rounded;
+
 
 void Start()
     {
-        currentTime = 0;
         Cursor.lockState = CursorLockMode.Locked;
         cam = this.GetComponent<Camera>();
     }
@@ -21,14 +21,12 @@ void Update()
         {
             if (hit.collider.tag == "Finish")
             {
-                currentTime = currentTime + Time.deltaTime;
-        
-                float rounded = Mathf.Round(currentTime * 1000.0f) / 1000.0f;
+                rounded = hit.collider.gameObject.GetComponent<objectTimer>();
 
                 if (Input.GetMouseButton(0))
                 {
-                    Debug.Log("Looked at " + hit.collider.gameObject.name + " for " + rounded + " seconds");
-                }
+                    Debug.Log("Looked at " + hit.collider.name + " for " + rounded.StartCounter() + " seconds");
+                } 
             }
         }
     }
