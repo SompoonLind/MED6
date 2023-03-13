@@ -11,6 +11,7 @@ public class Pointcloud : MonoBehaviour
     private Camera cam;
     string filename = "";
     bool headerLine = true;
+    RaycastHit hit;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -25,7 +26,7 @@ public class Pointcloud : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
+        //RaycastHit hit;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
         
@@ -56,7 +57,7 @@ public class Pointcloud : MonoBehaviour
             
         for (int i = 0; i < 1; i++)
         {
-            tw.WriteLine(1 + ";" + 2 + ";" + 3); //Add to this list if we want to add more predetermined things
+            tw.WriteLine(Mathf.Round(hit.point.x * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.y * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.z * 1000.0f) / 1000.0f); //Add to this list if we want to add more predetermined things
         }
    
         tw.Close();

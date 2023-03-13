@@ -21,6 +21,7 @@ void Update()
         {
             if (hit.collider.tag == "Finish")
             {
+                
                 rounded = hit.collider.gameObject.GetComponent<objectTimer>();
 
                 if (Input.GetMouseButton(0))
