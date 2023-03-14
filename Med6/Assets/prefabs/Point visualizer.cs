@@ -10,7 +10,6 @@ public class PointVisualizer : MonoBehaviour
     StreamReader reader;
     string[] valuesRead;
     List<float> timeValues = new List<float>();
-    bool alreadyRead = true;
     string[][] data;
 
 
@@ -27,22 +26,18 @@ public class PointVisualizer : MonoBehaviour
         for (int i = 0; i < lines.Length; i++) {
             data[i] = lines[i].Split(";"[0]);
         }
+        
+        for (int i = 0; i < data.Length-1; i++)
+        {
+            timeValues.Add(float.Parse(data[i][3]));
+            Debug.Log(timeValues[i]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < data.Length; i++)
-        {
-            
-            timeValues.Add(float.Parse(data[i][3]));
-        }
-        if (alreadyRead)
-        {
-            int maxVal = timeValues.Count;
-            Debug.Log(maxVal);
-        }
-        alreadyRead = false;
+
 
 
     }
