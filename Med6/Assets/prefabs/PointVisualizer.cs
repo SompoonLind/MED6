@@ -50,19 +50,17 @@ public class PointVisualizer : MonoBehaviour
 
         float timeValMax = timeValues.Last();
 
-        for (int i = 0; i < timeValues.Count-1; i++)
+        for (int i = 0; i < timeValues.Count; i++)
         {
             float normalized = timeValues[i]/timeValMax;
             normalizedTime.Add(normalized);
-
+            Debug.Log(normalizedTime[i]);
         }
 
-        int normalizedTimeCount = normalizedTime.Count();
+        int normalizedTimeCount = normalizedTime.Count()-1;
 
         Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
-
-        Debug.Log(normalizedTime[0]);
     }
 
     void Update()
