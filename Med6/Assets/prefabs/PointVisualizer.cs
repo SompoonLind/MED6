@@ -63,6 +63,7 @@ public class PointVisualizer : MonoBehaviour
 
         Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
+        positions();
     }
 
     void Update()
@@ -112,7 +113,7 @@ public class PointVisualizer : MonoBehaviour
         spheresDrawn = false;
     }
 
-    public void positions()
+    void positions()
     {
         for (int i = 0; i < data.Length; i++)
         {
