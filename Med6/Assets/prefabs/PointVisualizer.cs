@@ -26,7 +26,6 @@ public class PointVisualizer : MonoBehaviour
     List<float> normalizedTime = new List<float>();
     bool spheresDrawn = false; //Bolean så spheres kun tegnes en gang
     GameObject SphereController; //GameObject der sættes som parent for alle spawnede spheres 
-    public List<Vector3> positionData = new List<Vector3>();
 
     void Start()
     {
@@ -56,14 +55,12 @@ public class PointVisualizer : MonoBehaviour
         {
             float normalized = timeValues[i]/timeValMax;
             normalizedTime.Add(normalized);
-            Debug.Log(normalizedTime[i]);
         }
 
         int normalizedTimeCount = normalizedTime.Count()-1;
 
         Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
-        positions();
     }
 
     void Update()
@@ -111,13 +108,5 @@ public class PointVisualizer : MonoBehaviour
             Destroy(destroy);
         }
         spheresDrawn = false;
-    }
-
-    void positions()
-    {
-        for (int i = 0; i < data.Length; i++)
-        {
-            positionData.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
-        }
     }
 }

@@ -18,6 +18,7 @@ public class ParticleTest : MonoBehaviour
     string filePath; //Fil placering
     StreamReader reader; //Læs fil
     string[][] data; //2d Array til at splitte alle linjer i CSV filen til individuelle lister for X, Y, Z og tid
+    List<Vector3> XYZvaluesRaw = new List<Vector3>();
     List<float> XValues = new List<float>(); //Liste til alle X-værdier
     List<float> YValues = new List<float>(); //Liste til alle Y-værdier
     List<float> ZValues = new List<float>(); //Liste til alle Z-værdier
@@ -45,6 +46,7 @@ public class ParticleTest : MonoBehaviour
             XValues.Add(float.Parse(data[i][0]));
             YValues.Add(float.Parse(data[i][1]));
             ZValues.Add(float.Parse(data[i][2]));
+            XYZvaluesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
             timeValues.Add(float.Parse(data[i][3]));         
         }
 
@@ -54,12 +56,11 @@ public class ParticleTest : MonoBehaviour
         {
             float normalized = timeValues[i]/timeValMax;
             normalizedTime.Add(normalized);
-            Debug.Log(normalizedTime[i]);
         }
 
+        List<Vector3> XYZvalues = XYZvaluesRaw.Distinct().ToList();
+
         int normalizedTimeCount = normalizedTime.Count()-1;
-
-
 
         Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
@@ -84,7 +85,7 @@ public class ParticleTest : MonoBehaviour
 
     void drawSpheres()
     {
-        for (int i = 0; i < data.Length-1; i++) //For loop på data.length-1 så vi sætter værdien for hver individuel koordinat
+        for (int i = 0; i < XYZvaluesRaw.Count; i++) //For loop på data.length-1 så vi sætter værdien for hver individuel koordinat
         {
             if (normalizedTime[i] > Min && normalizedTime[i] < Max) //Tegn kun dem hvis tid falder indenfor min og max
             {
@@ -94,8 +95,8 @@ public class ParticleTest : MonoBehaviour
                 primitive.transform.parent = SphereController.gameObject.transform;
                 primitive.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 Destroy(primitive.GetComponent<Collider>());
-                primitive.transform.position = new Vector3(XValues[i], YValues[i], ZValues[i]);
-                primitive.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                primitive.transform.position = XYZvaluesRaw[i];
+                primitive.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
         spheresDrawn = true;
