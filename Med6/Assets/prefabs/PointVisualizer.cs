@@ -10,7 +10,9 @@ Hvis man kun vil se en given tidsperiode, skriver man først sin nye ønskede mi
 */
 public class PointVisualizer : MonoBehaviour
 {
+    [Range(0.0f, 1.0f)]
     public float Min; 
+    [Range(0.0f, 1.0f)]
     public float Max;
     public bool ResetSpheres = false; //Knap til at resette spheres
     string filePath; //Fil placering
@@ -20,6 +22,7 @@ public class PointVisualizer : MonoBehaviour
     List<float> YValues = new List<float>(); //Liste til alle Y-værdier
     List<float> ZValues = new List<float>(); //Liste til alle Z-værdier
     List<float> timeValues = new List<float>(); //Liste til alle tid værdier
+    List<float> normalizedTime = new List<float>();
     bool spheresDrawn = false; //Bolean så spheres kun tegnes en gang
     GameObject SphereController; //GameObject der sættes som parent for alle spawnede spheres 
 
@@ -44,8 +47,22 @@ public class PointVisualizer : MonoBehaviour
             ZValues.Add(float.Parse(data[i][2]));
             timeValues.Add(float.Parse(data[i][3]));            
         }
-        Min = timeValues.First(); //Sætter minimum værdien fra CSV filen 
-        Max = timeValues.Last(); //Sætter maksimum værdien fra CSV filen 
+
+        float timeValMax = timeValues.Last();
+
+        for (int i = 0; i < timeValues.Count-1; i++)
+        {
+            float normalized = timeValues[i]/timeValMax;
+            normalizedTime.Add(normalized);
+
+        }
+
+        int normalizedTimeCount = normalizedTime.Count();
+
+        Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
+        Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
+
+        Debug.Log(normalizedTime[0]);
     }
 
     void Update()
@@ -65,7 +82,7 @@ public class PointVisualizer : MonoBehaviour
     {
         for (int i = 0; i < data.Length-1; i++) //For loop på data.length-1 så vi sætter værdien for hver individuel koordinat
         {
-            if (timeValues[i] > Min && timeValues[i] < Max) //Tegn kun dem hvis tid falder indenfor min og max
+            if (normalizedTime[i] > Min && normalizedTime[i] < Max) //Tegn kun dem hvis tid falder indenfor min og max
             {
                 //Opretter, tagger, farver og positionerer spheres ud fra CSV data
                 GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Sphere); 
