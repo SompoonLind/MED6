@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -8,7 +7,7 @@ using System.Linq;
 How to use: ved kørsel af programmet finder den selv min og maks, sætter dem i inspectoren, og tegner derefter den fulde "visualization". 
 Hvis man kun vil se en given tidsperiode, skriver man først sin nye ønskede min og max værdi, og trykker derefter på "Reset spheres" checkboxen
 */
-public class PointVisualizer : MonoBehaviour
+public class ParticleTest : MonoBehaviour
 {
     [Range(0.0f, 1.0f)]
     public float Min; 
@@ -25,8 +24,7 @@ public class PointVisualizer : MonoBehaviour
     List<float> timeValues = new List<float>(); //Liste til alle tid værdier
     List<float> normalizedTime = new List<float>();
     bool spheresDrawn = false; //Bolean så spheres kun tegnes en gang
-    GameObject SphereController; //GameObject der sættes som parent for alle spawnede spheres 
-    public List<Vector3> positionData = new List<Vector3>();
+    GameObject SphereController; //GameObject der sættes som parent for alle spawnede spheres
 
     void Start()
     {
@@ -47,7 +45,7 @@ public class PointVisualizer : MonoBehaviour
             XValues.Add(float.Parse(data[i][0]));
             YValues.Add(float.Parse(data[i][1]));
             ZValues.Add(float.Parse(data[i][2]));
-            timeValues.Add(float.Parse(data[i][3]));            
+            timeValues.Add(float.Parse(data[i][3]));         
         }
 
         float timeValMax = timeValues.Last();
@@ -60,6 +58,8 @@ public class PointVisualizer : MonoBehaviour
         }
 
         int normalizedTimeCount = normalizedTime.Count()-1;
+
+
 
         Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
@@ -110,13 +110,5 @@ public class PointVisualizer : MonoBehaviour
             Destroy(destroy);
         }
         spheresDrawn = false;
-    }
-
-    public void positions()
-    {
-        for (int i = 0; i < data.Length; i++)
-        {
-            positionData.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
-        }
     }
 }
