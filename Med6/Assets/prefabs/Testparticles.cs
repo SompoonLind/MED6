@@ -39,6 +39,7 @@ public class Testparticles : MonoBehaviour
         for (int i = 0; i < data.Length-1; i++) //For loop der opdeler værdierne i hver ders liste frem for et 2d array
         {
             XValues.Add(float.Parse(data[i][0]));
+            XValues[i] = -XValues[i];
             YValues.Add(float.Parse(data[i][1]));
             ZValues.Add(float.Parse(data[i][2]));
             timeValues.Add(float.Parse(data[i][3]));    
