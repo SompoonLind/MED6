@@ -47,30 +47,29 @@ public class Testparticles : MonoBehaviour
         
         particles = new ParticleSystem.Particle[XYZValues.Count];
 
-        for (int i = 0; i < XYZValues.Count; i++)
-        {
-            particles[i].position = XYZValues[i];
-            particles[i].startSize = 100f;
-            particles[i].startColor = Color.red;
-        }
-
         particleSystem.SetParticles(particles, particles.Length);
     }
 
     // Update is called once per frame
     void Update()
+{
+    ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
+    emitParams.startSize = 1f;
+    emitParams.startColor = Color.red;
+
+    // Emit all the particles at once
+    particleSystem.Emit(XYZValues.Count);
+
+    // Get the current particles from the ParticleSystem
+    int numParticlesAlive = particleSystem.GetParticles(particles);
+
+    // Set the position of each particle to the corresponding XYZ value
+    for (int i = 0; i < numParticlesAlive; i++)
     {
-        // Get the current particles from the ParticleSystem
-        int numParticlesAlive = particleSystem.GetParticles(particles);
-
-        // Modify the particle properties
-        for (int i = 0; i < numParticlesAlive; i++)
-        {
-            particles[i].startSize = 1f;
-            particles[i].startColor = Color.red;
-        }
-
-        // Set the modified particles back to the ParticleSystem
-        particleSystem.SetParticles(particles, numParticlesAlive);
+        particles[i].position = XYZValues[i];
     }
+
+    // Set the modified particles back to the ParticleSystem
+    particleSystem.SetParticles(particles, numParticlesAlive);
+}
 }
