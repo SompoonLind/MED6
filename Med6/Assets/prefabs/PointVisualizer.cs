@@ -19,17 +19,19 @@ public class PointVisualizer : MonoBehaviour
     string filePath; //Fil placering
     StreamReader reader; //Læs fil
     string[][] data; //2d Array til at splitte alle linjer i CSV filen til individuelle lister for X, Y, Z og tid
+    List<Vector3> XYZValues = new List<Vector3>(); 
+    List<Vector3> XYZValuesRaw = new List<Vector3>(); 
     List<float> XValues = new List<float>(); //Liste til alle X-værdier
     List<float> YValues = new List<float>(); //Liste til alle Y-værdier
     List<float> ZValues = new List<float>(); //Liste til alle Z-værdier
     List<float> timeValues = new List<float>(); //Liste til alle tid værdier
     List<float> normalizedTime = new List<float>();
     bool spheresDrawn = false; //Bolean så spheres kun tegnes en gang
-    GameObject SphereController; //GameObject der sættes som parent for alle spawnede spheres 
+    GameObject CubeController; //GameObject der sættes som parent for alle spawnede cubes 
 
     void Start()
     {
-        SphereController = new GameObject("Sphere Controller"); //Opretter GameObject til at Parente alle spheres, bare så det ser lidt pænere ud i Hierarchy
+        CubeController = new GameObject("Cube Controller"); //Opretter GameObject til at Parente alle spheres, bare så det ser lidt pænere ud i Hierarchy
         filePath = Application.dataPath + "/CSV/test.csv"; //Filplacering af CSV fil, skal gøres lidt mere modulært
         reader = new StreamReader(filePath); //Læs fil på filplacering
 
@@ -46,6 +48,7 @@ public class PointVisualizer : MonoBehaviour
             XValues.Add(float.Parse(data[i][0]));
             YValues.Add(float.Parse(data[i][1]));
             ZValues.Add(float.Parse(data[i][2]));
+            XYZValuesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
             timeValues.Add(float.Parse(data[i][3]));            
         }
 
@@ -56,6 +59,8 @@ public class PointVisualizer : MonoBehaviour
             float normalized = timeValues[i]/timeValMax;
             normalizedTime.Add(normalized);
         }
+
+        XYZValues = XYZValuesRaw.Distinct().ToList();
 
         int normalizedTimeCount = normalizedTime.Count()-1;
 
@@ -82,17 +87,17 @@ public class PointVisualizer : MonoBehaviour
 
     void drawSpheres()
     {
-        for (int i = 0; i < data.Length-1; i++) //For loop på data.length-1 så vi sætter værdien for hver individuel koordinat
+        for (int i = 0; i < XYZValues.Count; i++) //For loop på data.length-1 så vi sætter værdien for hver individuel koordinat
         {
             if (normalizedTime[i] > Min && normalizedTime[i] < Max) //Tegn kun dem hvis tid falder indenfor min og max
             {
                 //Opretter, tagger, farver og positionerer spheres ud fra CSV data
                 GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube); 
                 primitive.transform.tag = "visualizer";
-                primitive.transform.parent = SphereController.gameObject.transform;
+                primitive.transform.parent = CubeController.gameObject.transform;
                 primitive.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 Destroy(primitive.GetComponent<Collider>());
-                primitive.transform.position = new Vector3(XValues[i], YValues[i], ZValues[i]);
+                primitive.transform.position = XYZValues[i]; //new Vector3(XValues[i], YValues[i], ZValues[i]);
                 primitive.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             }
         }
