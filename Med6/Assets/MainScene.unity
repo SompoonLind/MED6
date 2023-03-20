@@ -212,7 +212,6 @@ GameObject:
   - component: {fileID: 650838373}
   - component: {fileID: 650838374}
   - component: {fileID: 650838375}
-  - component: {fileID: 650838376}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -341,20 +340,6 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9ab0610b5c15944eaccb6085a5a1422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Min: 0
-  Max: 0
---- !u!114 &650838376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650838367}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8139247f53c1c104fa97b22d5164c67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Min: 0
@@ -880,14 +865,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919926309}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 2
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -955,7 +940,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1e+9
       minScalar: 5
       maxCurve:
         serializedVersion: 2

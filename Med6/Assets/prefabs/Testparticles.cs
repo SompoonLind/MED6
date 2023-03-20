@@ -45,8 +45,10 @@ public class Testparticles : MonoBehaviour
             timeValues.Add(float.Parse(data[i][3]));    
             XYZValues.Add(new Vector3( XValues[i],ZValues[i],YValues[i]));
         }
+
+        List<Vector3> XYZdeez = XYZValues.Distinct().ToList();
         
-        particles = new ParticleSystem.Particle[XYZValues.Count];
+        particles = new ParticleSystem.Particle[XYZdeez.Count];
 
         particleSystem.SetParticles(particles, particles.Length);
     }

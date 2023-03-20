@@ -19,6 +19,7 @@ public class ParticleTest : MonoBehaviour
     StreamReader reader; //Læs fil
     string[][] data; //2d Array til at splitte alle linjer i CSV filen til individuelle lister for X, Y, Z og tid
     List<Vector3> XYZvaluesRaw = new List<Vector3>();
+    List<Vector3> XYZvalues = new List<Vector3>();
     List<float> XValues = new List<float>(); //Liste til alle X-værdier
     List<float> YValues = new List<float>(); //Liste til alle Y-værdier
     List<float> ZValues = new List<float>(); //Liste til alle Z-værdier
@@ -58,7 +59,7 @@ public class ParticleTest : MonoBehaviour
             normalizedTime.Add(normalized);
         }
 
-        List<Vector3> XYZvalues = XYZvaluesRaw.Distinct().ToList();
+        XYZvalues = XYZvaluesRaw.Distinct().ToList();
 
         int normalizedTimeCount = normalizedTime.Count()-1;
 
@@ -95,7 +96,7 @@ public class ParticleTest : MonoBehaviour
                 primitive.transform.parent = SphereController.gameObject.transform;
                 primitive.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
                 Destroy(primitive.GetComponent<Collider>());
-                primitive.transform.position = XYZvaluesRaw[i];
+                primitive.transform.position = XYZvalues[i];
                 primitive.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
