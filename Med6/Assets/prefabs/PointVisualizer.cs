@@ -52,15 +52,14 @@ public class PointVisualizer : MonoBehaviour
             timeValues.Add(float.Parse(data[i][3]));            
         }
 
-        float timeValMax = timeValues.Last();
+        XYZValues = XYZValuesRaw.Distinct().ToList();
+        float timeValMax = timeValues[XYZValues.Count()];
 
-        for (int i = 0; i < timeValues.Count; i++)
+        for (int i = 0; i < XYZValues.Count; i++)
         {
             float normalized = timeValues[i]/timeValMax;
             normalizedTime.Add(normalized);
         }
-
-        XYZValues = XYZValuesRaw.Distinct().ToList();
 
         int normalizedTimeCount = normalizedTime.Count()-1;
 

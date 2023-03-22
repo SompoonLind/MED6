@@ -784,7 +784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Min: 0
   Max: 0
-  particleController: {fileID: 1919926312}
 --- !u!199 &1919926311
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -14,7 +14,7 @@ public class Testparticles : MonoBehaviour
     float currentMax;
     string filePath; //Fil placering
     StreamReader reader; //Læs fil
-    [SerializeField] private ParticleSystem particleController;
+    private ParticleSystem particleController;
     string[][] data; //2d Array til at splitte alle linjer i CSV filen til individuelle lister for X, Y, Z og tid
     List<float> XValues = new List<float>(); //Liste til alle X-værdier
     List<float> YValues = new List<float>(); //Liste til alle Y-værdier
@@ -24,7 +24,7 @@ public class Testparticles : MonoBehaviour
     List<Vector3> XYZValues = new List<Vector3>();
     List<float> normalizedTime = new List<float>();
     private ParticleSystem.Particle[] particles;
-    private bool particlesDrawn = false;
+    private bool particlesDrawn;
 
     // Start is called before the first frame update
     void Start()
@@ -49,15 +49,14 @@ public class Testparticles : MonoBehaviour
             XYZValuesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
         }
 
-        float timeValMax = timeValues.Last();
+        XYZValues = XYZValuesRaw.Distinct().ToList();
+        float timeValMax = timeValues[XYZValues.Count()];
 
-        for (int i = 0; i < timeValues.Count; i++)
+        for (int i = 0; i < XYZValues.Count; i++)
         {
             float normalized = timeValues[i]/timeValMax;
             normalizedTime.Add(normalized);
         }
-
-        XYZValues = XYZValuesRaw.Distinct().ToList();
 
         int normalizedTimeCount = normalizedTime.Count()-1;
 
@@ -74,7 +73,7 @@ public class Testparticles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (particlesDrawn == false)
+        if (!particlesDrawn)
         {
             drawParticles();
             currentMin = Min;
@@ -97,24 +96,23 @@ public class Testparticles : MonoBehaviour
         {
             if (normalizedTime[i] > Min && normalizedTime[i] < Max)
             {
-                particleController.Emit(timeValues.Count);
+                particleController.Emit(XYZValues.Count);
+                // Get the current particles from the ParticleSystem
+                int numParticlesAlive = particleController.GetParticles(particles);
+
+                // Set the position of each particle to the corresponding XYZ value
+                for (int j = 0; j < numParticlesAlive; j++)
+                {
+                        particles[j].position = XYZValues[j];
+                }
+                // Set the modified particles back to the ParticleSystem
+                particleController.SetParticles(particles, numParticlesAlive);
+                particlesDrawn = true;
             }
         }
-
-        // Get the current particles from the ParticleSystem
-        int numParticlesAlive = particleController.GetParticles(particles);
-
-        // Set the position of each particle to the corresponding XYZ value
-        for (int i = 0; i < numParticlesAlive; i++)
-        {
-                particles[i].position = XYZValues[i];
-        }
-        // Set the modified particles back to the ParticleSystem
-        particleController.SetParticles(particles, numParticlesAlive);
-        particlesDrawn = true;
     }
 
-    void Destroy() //Finder alle gameobjects med Tagget "visualizer" og destroyer dem, og tegner derefter nye
+    void Destroy()
     {
         particleController.Clear();
         particlesDrawn = false;
