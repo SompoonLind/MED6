@@ -10,61 +10,24 @@ Hvis man kun vil se en given tidsperiode, skriver man først sin nye ønskede mi
 */
 public class PointVisualizer : MonoBehaviour
 {
+    private CSVReader CSVdata;
     [Range(0.0f, 1.0f)]
     public float Min; 
     [Range(0.0f, 1.0f)]
     public float Max;
     float currentMin;
     float currentMax;
-    string filePath; //Fil placering
-    StreamReader reader; //Læs fil
-    string[][] data; //2d Array til at splitte alle linjer i CSV filen til individuelle lister for X, Y, Z og tid
-    List<Vector3> XYZValues = new List<Vector3>(); 
-    List<Vector3> XYZValuesRaw = new List<Vector3>(); 
-    List<float> XValues = new List<float>(); //Liste til alle X-værdier
-    List<float> YValues = new List<float>(); //Liste til alle Y-værdier
-    List<float> ZValues = new List<float>(); //Liste til alle Z-værdier
-    List<float> timeValues = new List<float>(); //Liste til alle tid værdier
     List<float> normalizedTime = new List<float>();
+    List<Vector3> XYZValues = new List<Vector3>();
     bool spheresDrawn = false; //Bolean så spheres kun tegnes en gang
     GameObject CubeController; //GameObject der sættes som parent for alle spawnede cubes 
 
     void Start()
     {
-        CubeController = new GameObject("Cube Controller"); //Opretter GameObject til at Parente alle spheres, bare så det ser lidt pænere ud i Hierarchy
-        filePath = Application.dataPath + "/CSV/test.csv"; //Filplacering af CSV fil, skal gøres lidt mere modulært
-        reader = new StreamReader(filePath); //Læs fil på filplacering
+        //CubeController = new GameObject("Cube Controller"); //Opretter GameObject til at Parente alle spheres, bare så det ser lidt pænere ud i Hierarchy
+        normalizedTime = CSVdata.Timevals();
+        XYZValues = CSVdata.XYZvals();
 
-        reader.ReadLine(); //Skip header linjen
-
-        string[] lines = reader.ReadToEnd().Split("\n"[0]); //Læs alle linjer til et array og split ved newline
-        data = new string[lines.Length][]; //2d array med antal linjer i CSV filen og værdien på hver af dem
-        for (int i = 0; i < lines.Length; i++) { 
-            data[i] = lines[i].Split(";"[0]); //For loop der splitter værdierne ved semikolon, så vi får de individuelle
-        }
-        
-        for (int i = 0; i < data.Length-1; i++) //For loop der opdeler værdierne i hver ders liste frem for et 2d array
-        {
-            XValues.Add(float.Parse(data[i][0]));
-            YValues.Add(float.Parse(data[i][1]));
-            ZValues.Add(float.Parse(data[i][2]));
-            XYZValuesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
-            timeValues.Add(float.Parse(data[i][3]));            
-        }
-
-        XYZValues = XYZValuesRaw.Distinct().ToList();
-        float timeValMax = timeValues[XYZValues.Count()];
-
-        for (int i = 0; i < XYZValues.Count; i++)
-        {
-            float normalized = timeValues[i]/timeValMax;
-            normalizedTime.Add(normalized);
-        }
-
-        int normalizedTimeCount = normalizedTime.Count()-1;
-
-        Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
-        Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
     }
 
     void Update()
@@ -73,8 +36,8 @@ public class PointVisualizer : MonoBehaviour
         if (spheresDrawn == false)
         {
             drawSpheres();
-            currentMin = Min;
-            currentMax = Max;
+            currentMin = CSVdata.Minval();
+            currentMax = CSVdata.Maxval();
         }
 
         if (currentMin != Min || currentMax != Max)
