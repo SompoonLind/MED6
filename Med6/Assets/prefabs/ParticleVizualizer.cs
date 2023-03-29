@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Testparticles : MonoBehaviour
+public class ParticleVizualizer : MonoBehaviour
 {
-    GameObject Visualizer;
     CSVReader CSVData;
     [Range(0.0f, 1.0f)]
     public float Min; 
@@ -14,30 +13,24 @@ public class Testparticles : MonoBehaviour
     float currentMin;
     float currentMax;
     private ParticleSystem particleController;
+    List<Vector3> XYZValues = new List<Vector3>();
+    List<float> timeValues = new List<float>(); //Liste til alle tid værdier
     private ParticleSystem.Particle[] particles;
     private bool particlesDrawn;
-    string[][] data;
 
     // Start is called before the first frame update
     void Start()
     {
-        Visualizer = GameObject.FindGameObjectWithTag("visualizer");
-        CSVData = Visualizer.GetComponent<CSVReader>();
+        CSVData = GameObject.Find("CSV Reader").GetComponent<CSVReader>();
+        timeValues = CSVData.timeVals();
+        XYZValues = CSVData.XYZvals();
         Min = CSVData.Minval();
         Max = CSVData.Maxval();
-        data = CSVData.datavals();
-
-        float timeValMax = float.Parse(data[data.Length-2][3]);
-
-        for (int i = 0; i < data.Length-1; i++)
-        {
-            float normalized = float.Parse(data[i][3])/timeValMax;
-            data[i][3] = normalized.ToString();
-        }
 
         particleController = this.GetComponent<ParticleSystem>();
-        particles = new ParticleSystem.Particle[data.Length];
+        particles = new ParticleSystem.Particle[XYZValues.Count];
         particleController.SetParticles(particles, particles.Length);
+
     }
 
     // Update is called once per frame
@@ -58,20 +51,24 @@ public class Testparticles : MonoBehaviour
 
     void drawParticles()
     {
+        Debug.Log(XYZValues[0]);
         ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
         emitParams.startSize = 1f;
-
-        for (int i = 0; i < data.Length-1; i++)
+        // Emit all the particles at once
+        for (int i = 0; i < XYZValues.Count; i++)
         {
-            float sliderVal = float.Parse(data[i][3]);
-            if (sliderVal > Min && sliderVal < Max)
+            if (timeValues[i] > Min)
             {
-                Vector3 pos = new Vector3(float.Parse(data[i][0]),float.Parse(data[i][1]),float.Parse(data[i][2]));
+                int minCount = timeValues.Count(x => x > Min && x < Max);
+                Debug.Log(" Min < " + minCount);
                 var main = particleController.main;
-                main.maxParticles = data.Length;
-                particleController.Emit(data.Length);
+                main.maxParticles = minCount;
+                particleController.Emit(XYZValues.Count);
                 int numParticlesAlive = particleController.GetParticles(particles);
-                particles[i].position = pos;
+                for (int j = 0; j < numParticlesAlive; j++)
+                {
+                        particles[j].position = XYZValues[j];
+                }
                 particleController.SetParticles(particles, numParticlesAlive);
             }
         }

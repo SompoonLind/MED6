@@ -28,6 +28,7 @@ public class CSVReader : MonoBehaviour
         reader = new StreamReader(CSVfilePath); //Læs fil på filplacering
 
         reader.ReadLine(); //Skip header linjen
+        reader.ReadLine();
 
         string[] lines = reader.ReadToEnd().Split("\n"[0]); //Læs alle linjer til et array og split ved newline
         data = new string[lines.Length][]; //2d array med antal linjer i CSV filen og værdien på hver af dem
@@ -59,14 +60,13 @@ public class CSVReader : MonoBehaviour
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
     }
 
+    public List <float> timeVals()
+    {
+        return normalizedTime;
+    }
     public List<Vector3> XYZvals()
     {
         return XYZValues;
-    }
-
-    public List<float> Timevals()
-    {
-        return normalizedTime;
     }
 
     public float Minval()
@@ -79,4 +79,8 @@ public class CSVReader : MonoBehaviour
         return Max; 
     }
 
+    public string[][] datavals()
+    {
+        return data;
+    }
 }
