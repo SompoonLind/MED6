@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 1708915286782565979, guid: 3893d82a357259a4fb6a26cdfd893996,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1708915286782565980, guid: 3893d82a357259a4fb6a26cdfd893996,
         type: 3}
@@ -197,6 +197,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3893d82a357259a4fb6a26cdfd893996, type: 3}
+--- !u!1 &59906485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 59906487}
+  - component: {fileID: 59906486}
+  m_Layer: 0
+  m_Name: CSV Reader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &59906486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59906485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12a76aa6e56ad7478b684a6b4dd8080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CSVFile: {fileID: 4900000, guid: 8f6bd52d58215ae41ae770eb8b9fb912, type: 3}
+--- !u!4 &59906487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59906485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &650838367
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,14 +257,13 @@ GameObject:
   - component: {fileID: 650838373}
   - component: {fileID: 650838374}
   - component: {fileID: 650838375}
-  - component: {fileID: 650838376}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &650838368
 AudioListener:
   m_ObjectHideFlags: 0
@@ -345,19 +389,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Min: 0
   Max: 0
---- !u!114 &650838376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650838367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12a76aa6e56ad7478b684a6b4dd8080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CSVFile: {fileID: 4900000, guid: 8f6bd52d58215ae41ae770eb8b9fb912, type: 3}
 --- !u!1001 &873982868
 PrefabInstance:
   m_ObjectHideFlags: 0

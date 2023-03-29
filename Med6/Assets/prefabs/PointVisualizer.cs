@@ -27,7 +27,6 @@ public class PointVisualizer : MonoBehaviour
         //CubeController = new GameObject("Cube Controller"); //Opretter GameObject til at Parente alle spheres, bare så det ser lidt pænere ud i Hierarchy
         normalizedTime = CSVdata.Timevals();
         XYZValues = CSVdata.XYZvals();
-
     }
 
     void Update()

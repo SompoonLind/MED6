@@ -57,10 +57,6 @@ public class CSVReader : MonoBehaviour
 
         Min = normalizedTime[0]; //Sætter minimum værdien fra CSV filen 
         Max = normalizedTime[normalizedTimeCount]; //Sætter maksimum værdien fra CSV filen 
-        XYZvals();
-        Timevals();
-        Minval();
-        Maxval();
     }
 
     public List<Vector3> XYZvals()
