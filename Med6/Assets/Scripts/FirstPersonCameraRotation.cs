@@ -13,6 +13,7 @@ public class FirstPersonCameraRotation : MonoBehaviour {
 	[Range(0.1f, 9f)][SerializeField] float sensitivity = 2f;
 	[Tooltip("Limits vertical camera rotation. Prevents the flipping that happens when rotation goes above 90.")]
 	[Range(0f, 90f)][SerializeField] float yRotationLimit = 88f;
+	[SerializeField] float speed = 0.5f;
 
 	Vector2 rotation = Vector2.zero;
 	const string xAxis = "Mouse X"; //Strings in direct code generate garbage, storing and re-using them creates no garbage
@@ -26,5 +27,8 @@ public class FirstPersonCameraRotation : MonoBehaviour {
 		var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
 
 		transform.localRotation = xQuat * yQuat; //Quaternions seem to rotate more consistently than EulerAngles. Sensitivity seemed to change slightly at certain degrees using Euler. transform.localEulerAngles = new Vector3(-rotation.y, rotation.x, 0);
+
+		transform.position += transform.forward * Input.GetAxis("Vertical") * speed * Time.deltaTime;
+    	transform.position += transform.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 	}
 }
