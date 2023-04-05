@@ -34,8 +34,8 @@ public class Pointcloud : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
 
         if (Physics.Raycast(ray, out hit)) {
-            if (wantReflectance == true){
-                ReflectanceActive();
+            if (wantReflectance == true){//If developer wants reflectance
+                ReflectanceActive();//Rin reflectance script before writing csv
             }
             Debug.Log(hit);
             WriteCSV();
@@ -52,10 +52,10 @@ public class Pointcloud : MonoBehaviour
         public void ReflectanceActive(){
             if (hit.transform.gameObject.layer == LayerMask.NameToLayer("reflective")) {//See if layer hit by ray is reflective
                 Vector3 inDirection = Vector3.Reflect(transform.forward,hit.normal);
-                Ray ray2 = new Ray(hit.point, inDirection);
-                Debug.DrawRay (hit.point, inDirection * rayDistance, Color.blue);
-                if (Physics.Raycast(ray2, out hit2)) {
-                    hit = hit2;
+                Ray ray2 = new Ray(hit.point, inDirection);// Create a new ray in direction 
+                Debug.DrawRay (hit.point, inDirection * rayDistance, Color.blue);//visualize new ray
+                if (Physics.Raycast(ray2, out hit2)) {//if new ray hits 
+                    hit = hit2;//Replace original hit with hit2
                 }
             }
         }
