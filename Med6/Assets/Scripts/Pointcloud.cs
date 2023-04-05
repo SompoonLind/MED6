@@ -35,7 +35,7 @@ public class Pointcloud : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit)) {
             if (wantReflectance == true){//If developer wants reflectance
-                ReflectanceActive();//Rin reflectance script before writing csv
+                ReflectanceActive();//Run reflectance script before writing csv
             }
             Debug.Log(hit);
             WriteCSV();
