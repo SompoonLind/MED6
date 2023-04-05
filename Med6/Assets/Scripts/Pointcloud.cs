@@ -12,7 +12,9 @@ public class Pointcloud : MonoBehaviour
     string filename = "";
     bool headerLine = true;
     RaycastHit hit;
+    RaycastHit hit2;
     private float currentTime;
+    public bool wantReflectance = false;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -30,8 +32,12 @@ public class Pointcloud : MonoBehaviour
         //RaycastHit hit;
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
-        
+
         if (Physics.Raycast(ray, out hit)) {
+            if (wantReflectance == true){
+                ReflectanceActive();
+            }
+            Debug.Log(hit);
             WriteCSV();
             //Debug.Log(hit.point[0]);
             //GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -43,6 +49,18 @@ public class Pointcloud : MonoBehaviour
 
 
     }
+        public void ReflectanceActive(){
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("reflective")) {//See if layer hit by ray is reflective
+                Vector3 inDirection = Vector3.Reflect(transform.forward,hit.normal);
+                Ray ray2 = new Ray(hit.point, inDirection);
+                Debug.DrawRay (hit.point, inDirection * rayDistance, Color.blue);
+                if (Physics.Raycast(ray2, out hit2)) {
+                    hit = hit2;
+                }
+            }
+        }
+
+
         public void WriteCSV()
         {
         
