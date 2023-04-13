@@ -11,7 +11,7 @@ public class ParticleVizualizer : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float Max;
     float currentMin;
-    float currentMax;
+    public float currentMax;
     private ParticleSystem particleController;
     List<Vector3> XYZValues = new List<Vector3>();
     List<float> timeValues = new List<float>(); //Liste til alle tid værdier
