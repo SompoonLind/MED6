@@ -20,7 +20,7 @@ public class PointVisualizer : MonoBehaviour
     float currentMax;
     List<float> timeValues = new List<float>();
     List<Vector3> XYZValues = new List<Vector3>();
-    bool cubesDrawn = false; //Bolean så spheres kun tegnes en gang
+    bool cubesDrawn = false; //Bolean så cubes kun tegnes en gang
     GameObject CubeController; //GameObject der sættes som parent for alle spawnede cubes 
 
     void Start()
