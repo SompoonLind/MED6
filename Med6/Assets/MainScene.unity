@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12a76aa6e56ad7478b684a6b4dd8080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CSVFile: {fileID: 4900000, guid: 8f6bd52d58215ae41ae770eb8b9fb912, type: 3}
+  CSVFile: {fileID: 4900000, guid: 3d3eaf7467b5b674bae9e93be63be101, type: 3}
 --- !u!4 &59906487
 Transform:
   m_ObjectHideFlags: 0
@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 650838371}
   - component: {fileID: 650838373}
   - component: {fileID: 650838374}
+  - component: {fileID: 650838375}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -511,7 +512,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650838367}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 167293f298b959c4b82e7d353c81269c, type: 3}
   m_Name: 
@@ -562,6 +563,20 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e29d88a9b0d6234087f767782eaf5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayDistance: 5
+  wantReflectance: 0
+--- !u!114 &650838375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650838367}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdecd106743e89c4788ad4346347ecf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 5
@@ -1438,7 +1453,6 @@ GameObject:
   - component: {fileID: 1919926312}
   - component: {fileID: 1919926311}
   - component: {fileID: 1919926310}
-  - component: {fileID: 1919926314}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -1455,7 +1469,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919926309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19ee520637a58b448ed75fc4593a212, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e6488e62e77da74d8172e3582a2f477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Min: 0
@@ -6254,18 +6268,6 @@ Transform:
   m_Father: {fileID: 59906487}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1919926314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919926309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dd2bda4259bb8f4faaee4269275a812, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1929399992
 GameObject:
   m_ObjectHideFlags: 0

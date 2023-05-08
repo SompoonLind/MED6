@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Testparticles : MonoBehaviour
+public class ParticleVisualizer : MonoBehaviour
 {
     GameObject Visualizer;
     CSVReader CSVData;
