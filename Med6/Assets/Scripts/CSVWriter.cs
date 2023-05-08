@@ -55,7 +55,7 @@ public class CSVWriter : MonoBehaviour
 
         if (headerLine == true)
         {
-            tw.WriteLine("HitX;HitY;HitZ;Px;Py;Pz;Rx;Ry;Rz;Time"); //Add to this list if we want to add more predetermined things
+            tw.WriteLine("HitX;HitY;HitZ;Px;Py;Pz;Rx;Ry;Rz;Rw;Time"); //Add to this list if we want to add more predetermined things
             tw.Close();
             tw = new StreamWriter(filename, true);
             headerLine = false;
@@ -68,7 +68,7 @@ public class CSVWriter : MonoBehaviour
             Mathf.Round(Px * 1000.0f) / 1000.0f + ";" + Mathf.Round(Py * 1000.0f) / 1000.0f + 
             ";" + Mathf.Round(Pz * 1000.0f) / 1000.0f + ";" + Mathf.Round(Rx * 1000.0f) / 1000.0f + ";"
              + Mathf.Round(Ry * 1000.0f) / 1000.0f + ";" + Mathf.Round(Rz * 1000.0f) / 1000.0f + ";" +
-              Mathf.Round(currentTime * 1000.0f) / 1000.0f); //Add to this list if we want to add more predetermined things
+             Mathf.Round(Rw * 1000.0f) / 1000.0f + ";" + Mathf.Round(currentTime * 1000.0f) / 1000.0f); //Add to this list if we want to add more predetermined things
         }
 
         tw.Close();
