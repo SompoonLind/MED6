@@ -65,10 +65,8 @@ public class CSVWriter : MonoBehaviour
         {
             tw.WriteLine(Mathf.Round(hit.point.x * 1000.0f) / 1000.0f + ";" + Mathf.Round(hit.point.y * 1000.0f) / 1000.0f 
             + ";" + Mathf.Round(hit.point.z * 1000.0f) / 1000.0f + ";" + 
-            Mathf.Round(Px * 1000.0f) / 1000.0f + ";" + Mathf.Round(Py * 1000.0f) / 1000.0f + 
-            ";" + Mathf.Round(Pz * 1000.0f) / 1000.0f + ";" + Mathf.Round(Rx * 1000.0f) / 1000.0f + ";"
-             + Mathf.Round(Ry * 1000.0f) / 1000.0f + ";" + Mathf.Round(Rz * 1000.0f) / 1000.0f + ";" +
-             Mathf.Round(Rw * 1000.0f) / 1000.0f + ";" + Mathf.Round(currentTime * 1000.0f) / 1000.0f); //Add to this list if we want to add more predetermined things
+            Px + ";" + Py + ";" + Pz  + ";" + Rx+ ";"
+             + Ry + ";" + Rz  + ";" + Rw  + ";" + currentTime); //Add to this list if we want to add more predetermined things
         }
 
         tw.Close();

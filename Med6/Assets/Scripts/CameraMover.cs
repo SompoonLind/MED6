@@ -50,7 +50,7 @@ public class CameraMover : MonoBehaviour
         for (int i = 0; i < timeVals.Count-2; i++)
         {
             float timeDifference = timeVals[i+1] - timeVals[i];
-            cam.transform.position = Vector3.MoveTowards(cam.transform.position, posValues[i], timeDifference);
+            cam.transform.position = new Vector3(posValues[i][0], posValues[i][1], posValues[i][2]);
             cam.transform.rotation = rotValues[i];
             yield return new WaitForSeconds(timeDifference);
         }
