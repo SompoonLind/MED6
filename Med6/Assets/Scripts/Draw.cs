@@ -18,8 +18,6 @@ public class Draw : MonoBehaviour
 
     // Variables for handling mouse input and timing the draw
     private RaycastHit hit;
-    private float lastMouseMoveTime;
-    private Vector3 lastMousePosition;
     private Vector3 currentHit;
     private Vector3 previousHit;
     public float timerInit = 0.01f;
@@ -28,8 +26,6 @@ public class Draw : MonoBehaviour
     private void Start()
     {
         timeLeft = timerInit;
-        lastMouseMoveTime = Time.time;
-        lastMousePosition = Input.mousePosition;
         drawMaterial = new Material(Shader.Find("Unlit/Draw")); // Find the "Draw" shader and create a new material with it
         splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
         GetComponent<Renderer>().material.mainTexture = splatMap;
