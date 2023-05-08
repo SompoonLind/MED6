@@ -68,7 +68,7 @@ public class Draw : MonoBehaviour
 
         currentHit = hit.point;
 
-        // Handle mouse input and drawing
+        // Handle rayInputs and drawing
         if (currentHit != previousHit)
         {
             if (Physics.Raycast(middleRay, out hit))
