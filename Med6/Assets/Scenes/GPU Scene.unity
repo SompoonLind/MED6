@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 66352598}
   - component: {fileID: 66352597}
   - component: {fileID: 66352596}
+  - component: {fileID: 66352600}
   m_Layer: 0
   m_Name: Plane (6)
   m_TagString: Untagged
@@ -319,6 +320,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 179.852, z: 90}
+--- !u!114 &66352600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66352595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c107806465dd8646a2ed144ff744b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane:
+  - {fileID: 66352595}
+  - {fileID: 146753679}
+  - {fileID: 1028047}
+  speed: 1
 --- !u!1 &146753679
 GameObject:
   m_ObjectHideFlags: 0
