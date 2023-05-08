@@ -20,6 +20,8 @@ public class Draw : MonoBehaviour
     private RaycastHit hit;
     private float lastMouseMoveTime;
     private Vector3 lastMousePosition;
+    private Vector3 currentHit;
+    private Vector3 previousHit;
     public float timerInit = 0.01f;
     private float timeLeft;
 
@@ -36,11 +38,12 @@ public class Draw : MonoBehaviour
 
     private void Update()
     {
+        Ray middleRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         timeLeft -= Time.deltaTime;
 
         // Calculate draw size based on the size of the object being hovered over
         float drawSize = 0.1f; // Default draw size
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+        if (Physics.Raycast(middleRay, out hit))
         {
             Renderer renderer = hit.collider.GetComponent<Renderer>();
             if (renderer != null && renderer.material == GetComponent<Renderer>().material)
@@ -63,13 +66,12 @@ public class Draw : MonoBehaviour
         alphaKey[1].time = 1.0f;
         gradient.SetKeys(colorKey, alphaKey);
 
-        // Handle mouse input and drawing
-        Vector3 currentMousePosition = Input.mousePosition;
-        if (currentMousePosition != lastMousePosition)
+        currentHit = hit.point;
+
+        // Handle rayInputs and drawing
+        if (currentHit != previousHit)
         {
-            lastMouseMoveTime = Time.time;
-            lastMousePosition = currentMousePosition;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Physics.Raycast(middleRay, out hit))
             {
                 if (hit.collider.GetComponent<Renderer>().material == GetComponent<Renderer>().material)
                 {
@@ -89,11 +91,12 @@ public class Draw : MonoBehaviour
             }
             // Use the draw material to set the color for the current brush stroke
             drawMaterial.SetVector("_Color", gradient.Evaluate(0f));
+            previousHit = currentHit;
         }
-        else if (timeLeft < 0) // Time is up
+        else
         {
             // Cast a ray from the camera to the mouse position and check for a collision
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Physics.Raycast(middleRay, out hit))
             {
                 // Check if the collider of the hit object has the same material as this object
                 if (hit.collider.GetComponent<Renderer>().material == GetComponent<Renderer>().material) // use default material
