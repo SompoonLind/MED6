@@ -340,17 +340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 104ff8d5b15fd384b84222c8cee4b67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: 
-  currentTime: 0
-  Px: 0
-  Py: 0
-  Pz: 0
-  Rx: 0
-  Ry: 0
-  Rz: 0
-  Rw: 0
-  cam: {fileID: 0}
-  headerLine: 1
 --- !u!1 &181904388
 GameObject:
   m_ObjectHideFlags: 0

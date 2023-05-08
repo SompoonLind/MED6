@@ -507,6 +507,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayDistance: 5
   wantReflectance: 0
+--- !u!20 &982426993 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1708915286622062532, guid: 3893d82a357259a4fb6a26cdfd893996,
+    type: 3}
+  m_PrefabInstance: {fileID: 2077358795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1002724415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -969,7 +975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1189614261
 AudioListener:
   m_ObjectHideFlags: 0
@@ -977,7 +983,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189614260}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1189614262
 Camera:
   m_ObjectHideFlags: 0
@@ -1217,13 +1223,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1612889624}
   - component: {fileID: 1612889623}
+  - component: {fileID: 1612889625}
   m_Layer: 0
   m_Name: Vizualizer
   m_TagString: visualizer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1612889623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1236,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12a76aa6e56ad7478b684a6b4dd8080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CSVFile: {fileID: 4900000, guid: bfab1dca78f6f2241b3efa7c91b3479b, type: 3}
+  CSVFile: {fileID: 4900000, guid: c7b8b71fc052f1646849bb87d77c6b3f, type: 3}
 --- !u!4 &1612889624
 Transform:
   m_ObjectHideFlags: 0
@@ -1255,6 +1262,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612889625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612889622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29c836215865394f8b460d2a7c1df8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  writeData: 0
+  particles: 1
+  primitives: 0
+  followAlong: 0
 --- !u!1 &1621164402
 GameObject:
   m_ObjectHideFlags: 0
@@ -6189,7 +6212,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898897163}
-  - component: {fileID: 1898897165}
   - component: {fileID: 1898897164}
   m_Layer: 0
   m_Name: Camera Movement
@@ -6197,7 +6219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1898897163
 Transform:
   m_ObjectHideFlags: 0
@@ -6225,19 +6247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8513d72b330f441878b39f7576cbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
---- !u!114 &1898897165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898897162}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 104ff8d5b15fd384b84222c8cee4b67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  cam: {fileID: 982426993}
 --- !u!1001 &1923153450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6343,7 +6353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1941663006
 Transform:
   m_ObjectHideFlags: 0
@@ -6380,6 +6390,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1708915286622062528, guid: 3893d82a357259a4fb6a26cdfd893996,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1708915286782565979, guid: 3893d82a357259a4fb6a26cdfd893996,
         type: 3}
       propertyPath: m_Name
