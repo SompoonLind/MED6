@@ -41,16 +41,16 @@ public class CameraMover : MonoBehaviour
         
         for (int i = 0; i < data.Length-1; i++) //For loop der opdeler værdierne i hver ders liste frem for et 2d array
         {
-            XPosValues.Add(float.Parse(data[i][0]));
-            YPosValues.Add(float.Parse(data[i][1]));
-            ZPosValues.Add(float.Parse(data[i][2]));
+            XPosValues.Add(float.Parse(data[i][3]));
+            YPosValues.Add(float.Parse(data[i][4]));
+            ZPosValues.Add(float.Parse(data[i][5]));
             posValues.Add(new Vector3(XPosValues[i], YPosValues[i], ZPosValues[i]));
-            XRotValues.Add(float.Parse(data[i][3]));
-            YRotValues.Add(float.Parse(data[i][4]));
-            ZRotValues.Add(float.Parse(data[i][5]));
-            WRotValues.Add(float.Parse(data[i][6]));
+            XRotValues.Add(float.Parse(data[i][6]));
+            YRotValues.Add(float.Parse(data[i][7]));
+            ZRotValues.Add(float.Parse(data[i][8]));
+            WRotValues.Add(float.Parse(data[i][9]));
             rotValues.Add(new Quaternion(XRotValues[i], YRotValues[i], ZRotValues[i], WRotValues[i]));
-            timeVals.Add(float.Parse(data[i][7]));
+            timeVals.Add(float.Parse(data[i][10]));
         }
         StartCoroutine(ExampleCoroutine());
     }

@@ -42,7 +42,7 @@ public class CSVReader : MonoBehaviour
             YValues.Add(float.Parse(data[i][1]));
             ZValues.Add(float.Parse(data[i][2]));
             XYZValuesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
-            timeValues.Add(float.Parse(data[i][9]));            
+            timeValues.Add(float.Parse(data[i][10]));            
         }
 
         XYZValues = XYZValuesRaw.Distinct().ToList();

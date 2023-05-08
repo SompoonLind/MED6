@@ -27,12 +27,12 @@ public class ParticleVisualizer : MonoBehaviour
         Max = CSVData.Maxval();
         data = CSVData.datavals();
 
-        float timeValMax = float.Parse(data[data.Length-2][9]);
+        float timeValMax = float.Parse(data[data.Length-2][10]);
 
         for (int i = 0; i < data.Length-1; i++)
         {
-            float normalized = float.Parse(data[i][9])/timeValMax;
-            data[i][9] = normalized.ToString();
+            float normalized = float.Parse(data[i][10])/timeValMax;
+            data[i][10] = normalized.ToString();
         }
 
         particleController = this.GetComponent<ParticleSystem>();
@@ -63,7 +63,7 @@ public class ParticleVisualizer : MonoBehaviour
 
         for (int i = 0; i < data.Length-1; i++)
         {
-            float sliderVal = float.Parse(data[i][9]);
+            float sliderVal = float.Parse(data[i][10]);
             if (sliderVal > Min && sliderVal < Max)
             {
                 Vector3 pos = new Vector3(float.Parse(data[i][0]),float.Parse(data[i][1]),float.Parse(data[i][2]));
