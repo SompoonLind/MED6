@@ -175,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 1708915286782565979, guid: 3893d82a357259a4fb6a26cdfd893996,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1708915286782565980, guid: 3893d82a357259a4fb6a26cdfd893996,
         type: 3}
@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &650838368
 AudioListener:
   m_ObjectHideFlags: 0
@@ -655,47 +655,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76af4aba325626949baf6c7d19cfbff8, type: 3}
---- !u!1 &877379369 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1708915286782565979, guid: 3893d82a357259a4fb6a26cdfd893996,
-    type: 3}
-  m_PrefabInstance: {fileID: 55471746}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &877379376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877379369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd9f82377aeb9704193bd866d119aaa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showFps: 0
-  useDefaultFps: 1
-  customFps: 0
-  screenFade: 0
-  eyeTracking: 0
-  trackingMode: 0
-  faceTracking: 0
-  lipsyncTracking: 0
-  lateLatching: 0
-  foveationLevel: -1
-  openMRC: 1
-  foregroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  backLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  backCameraObj: {fileID: 0}
-  foregroundCameraObj: {fileID: 0}
-  mrcRenderTexture: {fileID: 0}
-  foregroundMrcRenderTexture: {fileID: 0}
-  appCheckResult: 100
-  useRecommendedAntiAliasingLevel: 1
 --- !u!1 &957440819
 GameObject:
   m_ObjectHideFlags: 0
