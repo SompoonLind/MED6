@@ -44,7 +44,7 @@ public class CSVReader : MonoBehaviour
             XYZValuesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
             timeValues.Add(float.Parse(data[i][10]));            
         }
-
+    
         XYZValues = XYZValuesRaw.Distinct().ToList();
         float timeValMax = timeValues[XYZValues.Count()];
 
