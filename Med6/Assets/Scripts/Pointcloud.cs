@@ -70,7 +70,7 @@ public class Pointcloud : MonoBehaviour
 
         if (headerLine == true)
         {
-            tw.WriteLine("X, Y, Z, Time"); //Add to this list if we want to add more predetermined things
+            tw.WriteLine("X; Y; Z; Time"); //Add to this list if we want to add more predetermined things
             tw.Close();
             tw = new StreamWriter(filename, true);
             headerLine = false;

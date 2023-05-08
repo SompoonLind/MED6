@@ -42,7 +42,7 @@ public class CSVReader : MonoBehaviour
             YValues.Add(float.Parse(data[i][1]));
             ZValues.Add(float.Parse(data[i][2]));
             XYZValuesRaw.Add(new Vector3(XValues[i], YValues[i], ZValues[i]));
-            timeValues.Add(float.Parse(data[i][3]));            
+            timeValues.Add(float.Parse(data[i][9]));            
         }
 
         XYZValues = XYZValuesRaw.Distinct().ToList();
@@ -64,6 +64,22 @@ public class CSVReader : MonoBehaviour
     {
         return normalizedTime;
     }
+    int curentnumber = 1;
+    public float countXYdoubles()
+    {
+        int doubles = 1;
+        
+        for (int i = 0; i < XYZValuesRaw.Count; i++)
+        {
+            if (XYZValuesRaw[i][0] == XYZValuesRaw[i][2])
+            {
+                
+            }
+        }
+        
+        
+        return doubles;
+    }
     public List<Vector3> XYZvals()
     {
         return XYZValues;
@@ -83,4 +99,5 @@ public class CSVReader : MonoBehaviour
     {
         return data;
     }
+
 }

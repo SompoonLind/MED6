@@ -16,7 +16,7 @@ public class ParticleVizualizer : MonoBehaviour
     List<Vector3> XYZValues = new List<Vector3>();
     List<float> timeValues = new List<float>(); //Liste til alle tid værdier
     private ParticleSystem.Particle[] particles;
-    private bool particlesDrawn;
+    private bool particlesDrawn = false;
 
     // Start is called before the first frame update
     void Start()
