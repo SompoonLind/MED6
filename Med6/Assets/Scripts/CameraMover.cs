@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEditor;
-using System.IO;
+using UnityEngine.UI;
 
 public class CameraMover : MonoBehaviour
 {
+    [Range(-0.3f, 0.3f)]
+    public float Speed = 0; 
+    public bool pause;
+    public Slider mainSlider;
     string[][] data;
     List<float> XPosValues = new List<float>(); //Liste til alle X-værdier
     List<float> YPosValues = new List<float>(); //Liste til alle Y-værdier
@@ -44,15 +47,20 @@ public class CameraMover : MonoBehaviour
         StartCoroutine(ExampleCoroutine());
     }
 
-    // Update is called once per frame
     IEnumerator ExampleCoroutine()
     {
         for (int i = 0; i < timeVals.Count-2; i++)
         {
+            mainSlider.maxValue = timeVals.Count;
+            mainSlider.value = i;
             float timeDifference = timeVals[i+1] - timeVals[i];
             cam.transform.position = new Vector3(posValues[i][0], posValues[i][1], posValues[i][2]);
             cam.transform.rotation = rotValues[i];
-            yield return new WaitForSeconds(timeDifference);
+            while (pause)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(timeDifference - Speed);
         }
 
     }

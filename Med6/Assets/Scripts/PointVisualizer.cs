@@ -64,6 +64,10 @@ public class PointVisualizer : MonoBehaviour
                 Destroy(primitive.GetComponent<Collider>());
                 primitive.transform.position = XYZValues[i];
                 primitive.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                MeshFilter[] meshes = primitive.GetComponentsInChildren<MeshFilter>();
+                CombineInstance[] combine = new CombineInstance[meshes.Length];
+                Mesh mesh = new Mesh();
+                mesh.CombineMeshes(combine);
             }
         }
         cubesDrawn = true;
