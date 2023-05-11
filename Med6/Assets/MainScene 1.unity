@@ -327,6 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8513d72b330f441878b39f7576cbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
+  pause: 0
+  mainSlider: {fileID: 0}
   cam: {fileID: 650838369}
 --- !u!114 &121451634
 MonoBehaviour:

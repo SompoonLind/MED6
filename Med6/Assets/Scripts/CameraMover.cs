@@ -49,7 +49,9 @@ public class CameraMover : MonoBehaviour
 
     IEnumerator ExampleCoroutine()
     {
-        for (int i = 0; i < timeVals.Count-2; i++)
+        int startingIndex = 0;
+        mainSlider.maxValue = timeVals.Count - 1;
+        for (int i = startingIndex; i < timeVals.Count-2; i++)
         {
             mainSlider.maxValue = timeVals.Count;
             mainSlider.value = i;
@@ -58,10 +60,13 @@ public class CameraMover : MonoBehaviour
             cam.transform.rotation = rotValues[i];
             while (pause)
             {
+                if (mainSlider.value != i)
+                {
+                    i = (int)mainSlider.value;
+                }
                 yield return null;
             }
             yield return new WaitForSeconds(timeDifference - Speed);
         }
-
     }
 }
