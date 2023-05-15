@@ -31,7 +31,7 @@ public class buttonToggle : MonoBehaviour
         }
         else if(camMove.pause == false)
         {
-            buttonText.text = "▶";
+            buttonText.text = ">";
             camMove.pause = true;
         }
         

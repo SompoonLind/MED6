@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class VisualController : MonoBehaviour
 {
-    [Header("Only tick one at a time")]
     public bool writeData = false;
     public bool particles = false;
     public bool primitives = false;
@@ -25,7 +24,7 @@ public class VisualController : MonoBehaviour
         
         player = GameObject.Find("Player");
         mainCamera =  Camera.main;
-        mainCamera.enabled = false;
+        //mainCamera.enabled = false;
 
         if (writeData == true)
         {
@@ -34,14 +33,14 @@ public class VisualController : MonoBehaviour
             followController.SetActive(false);
         }
 
-        if (particles == true)
+        else if (particles == true)
         {
             setWriteTrue.enabled = false;
             primitivesController.SetActive(false);
             followController.SetActive(false);
         }
 
-        if (primitives == true)
+        else if (primitives == true)
         {
             setWriteTrue.enabled = false;
             particleController.SetActive(false);
@@ -54,9 +53,7 @@ public class VisualController : MonoBehaviour
             particleController.SetActive(false);
             primitivesController.SetActive(false);
             player.SetActive(false);
-            mainCamera.enabled = true;
         }
     }
-
 
 }
