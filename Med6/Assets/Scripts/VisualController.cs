@@ -6,7 +6,7 @@ public class VisualController : MonoBehaviour
     public bool particles = false;
     public bool primitives = false;
     public bool followAlong = false;
-    Camera mainCamera;
+    //Camera mainCamera;
     GameObject player;
     GameObject writerController;
     GameObject particleController;
@@ -23,7 +23,7 @@ public class VisualController : MonoBehaviour
         followController = GameObject.Find("Camera Movement");
         
         player = GameObject.Find("Player");
-        mainCamera =  Camera.main;
+        //mainCamera =  Camera.main;
         //mainCamera.enabled = false;
 
         if (writeData == true)
@@ -47,7 +47,7 @@ public class VisualController : MonoBehaviour
             followController.SetActive(false);
         }
 
-        if (followAlong == true)
+        else if (followAlong == true)
         {
             setWriteTrue.enabled = false;
             particleController.SetActive(false);
@@ -55,5 +55,4 @@ public class VisualController : MonoBehaviour
             player.SetActive(false);
         }
     }
-
 }
