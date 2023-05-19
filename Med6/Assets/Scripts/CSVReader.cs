@@ -64,7 +64,6 @@ public class CSVReader : MonoBehaviour
     {
         return normalizedTime;
     }
-    int curentnumber = 1;
     public float countXYdoubles()
     {
         int doubles = 1;

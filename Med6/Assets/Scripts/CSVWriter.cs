@@ -22,6 +22,12 @@ public class CSVWriter : MonoBehaviour
     {
         var curTime = "";
         curTime = System.DateTime.Now.ToString("dd-MM-yyyy_hh-mm-ss");
+        string filePath = Application.dataPath + "/CSV/";
+        if (!Directory.Exists(filePath))
+        {
+            Directory.CreateDirectory(filePath);
+        }
+
         filename = Application.dataPath + "/CSV/" + curTime +".csv";
         cam = this.GetComponent<Camera>();
     }

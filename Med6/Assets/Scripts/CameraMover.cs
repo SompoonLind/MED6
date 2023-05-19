@@ -7,8 +7,8 @@ public class CameraMover : MonoBehaviour
 {
     [Range(-0.3f, 0.3f)]
     public float Speed = 0; 
+    public int CurrentFrame = 0;
     public bool pause;
-    public Slider mainSlider;
     string[][] data;
     List<float> XPosValues = new List<float>(); //Liste til alle X-værdier
     List<float> YPosValues = new List<float>(); //Liste til alle Y-værdier
@@ -19,6 +19,7 @@ public class CameraMover : MonoBehaviour
     List<float> ZRotValues = new List<float>(); //Liste til alle Z-værdier
     List<float> WRotValues = new List<float>(); //Liste til alle Z-værdier
     List<float> timeVals = new List<float>();
+    List<float> normalizedTimeVals = new List<float>();
     List<Quaternion> rotValues = new List<Quaternion>();
     public Camera cam;
     CSVReader CSVData;
@@ -29,7 +30,6 @@ public class CameraMover : MonoBehaviour
         CSVData = Visualizer.GetComponent<CSVReader>();
         cam = GameObject.FindObjectOfType<Camera>();
         data = CSVData.datavals();
-
 
         for (int i = 0; i < data.Length-1; i++) //For loop der opdeler værdierne i hver ders liste frem for et 2d array
         {
@@ -49,21 +49,18 @@ public class CameraMover : MonoBehaviour
 
     IEnumerator ExampleCoroutine()
     {
-        int startingIndex = 0;
-        mainSlider.maxValue = timeVals.Count - 1;
-        for (int i = startingIndex; i < timeVals.Count-2; i++)
+        for (int i = 1; i < timeVals.Count-2; i++)
         {
-            mainSlider.maxValue = timeVals.Count;
-            mainSlider.value = i;
+            CurrentFrame = i;
             float timeDifference = timeVals[i+1] - timeVals[i];
             cam.transform.position = new Vector3(posValues[i][0], posValues[i][1], posValues[i][2]);
             cam.transform.rotation = rotValues[i];
             while (pause)
             {
-                if (mainSlider.value != i)
+                if (CurrentFrame != i)
                 {
-                    i = (int)mainSlider.value;
-                }
+                    i = CurrentFrame;
+                } 
                 yield return null;
             }
             yield return new WaitForSeconds(timeDifference - Speed);

@@ -155,6 +155,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3182524413862862000, guid: 1744fb2b38369144dba949b21bddaba7,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182524413862862000, guid: 1744fb2b38369144dba949b21bddaba7,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182524413862862000, guid: 1744fb2b38369144dba949b21bddaba7,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182524413862862000, guid: 1744fb2b38369144dba949b21bddaba7,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182524413862862000, guid: 1744fb2b38369144dba949b21bddaba7,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182524413862862001, guid: 1744fb2b38369144dba949b21bddaba7,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1189614262}
     - target: {fileID: 3182524413879987056, guid: 1744fb2b38369144dba949b21bddaba7,
         type: 3}
       propertyPath: m_Name
@@ -169,7 +199,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CSVFile
       value: 
-      objectReference: {fileID: 4900000, guid: 52f3eecb429cddb4f843b753b0f304a5, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3182524413879987070, guid: 1744fb2b38369144dba949b21bddaba7,
         type: 3}
       propertyPath: m_RootOrder
@@ -1275,7 +1305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189614260}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51e01dde66b000f4cb055f7a953cb79a, type: 3}
   m_Name: 
@@ -1284,7 +1314,7 @@ MonoBehaviour:
   runningSpeed: 11.5
   jumpSpeed: 8
   gravity: 20
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 1189614262}
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
@@ -1337,7 +1367,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189614260}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdecd106743e89c4788ad4346347ecf2, type: 3}
   m_Name: 
